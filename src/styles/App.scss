@@ -1,0 +1,96 @@
+
+
+$main-color:rgb(175, 27, 63);
+
+
+
+@mixin head(){
+    display: flex;
+    
+    align-items: center;
+    padding: .5em 1em;
+    background-color: rgb(55, 50, 62);
+    h2{
+        margin: 0;
+        padding: 0;
+        color:rgb(228, 227, 227);
+    }
+}
+.app{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10vh 80vh 10vh;
+    padding:1em 1em;
+    grid-template-areas:
+    "top top"
+    "editor previewer" 
+    "foot foot";
+   
+   
+}
+
+.top{
+    grid-area: top;
+    
+    
+    align-self:center ;
+}
+
+.editor{
+    
+    grid-area: editor;
+    
+    
+    .header{
+       @include head();
+    }
+    display: flex;
+    flex-direction: column;
+    
+
+    .toolbar{
+        margin-left:2em;
+        color:rgb(228, 227, 227);
+    }
+
+    textarea{
+        font-size:1.3em;
+        flex-grow: 1;
+        padding: 1em 1em;
+        resize: none;
+        outline: none;
+        
+        background-color: rgb(248,248,242);
+        &:focus{
+            outline:none;
+        }
+    }
+}
+.previewer{
+   
+    grid-area: previewer;
+    #preview{
+        padding:.5em 0.5em;
+    }
+    .header{
+        @include head();
+    }
+}
+
+
+
+
+html{
+    overflow:hidden;
+}
+
+@media screen and (max-width: 750px) {
+    
+    .app{
+        grid-template-rows: 10vh 40vh 40vh;
+        grid-template-areas:
+       "top top"
+       "editor editor" 
+        "previewer previewer";
+    }
+  }
